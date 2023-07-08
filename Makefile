@@ -3,4 +3,4 @@ install:
 	.venv/bin/pip install -r requirements.txt
 
 local:
-	.venv/bin/python main.py
+	.venv/bin/python -m app.main
