@@ -1,8 +1,13 @@
-import pinecone
+from app.plugins.langchain import LangchainClient
+from app.plugins.openai import openai_client
+from app.plugins.pinecone import pinecone_client
 
-from app.config import pinecone_settings
+# pinecone_client.populate_index(openai_client.embed)
 
-pinecone.init(
-    api_key=pinecone_settings.api_key, environment=pinecone_settings.environment
-)
-index = pinecone.Index(pinecone_settings.index)
+
+langchain_client = LangchainClient(openai_client.embed, pinecone_client.index)
+
+query = "who was Benito Mussolini?"
+response = langchain_client.text_similarity_search(query)
+
+print(response)
